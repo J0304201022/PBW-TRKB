@@ -1,0 +1,29 @@
+<?php
+    include 'connect.php';
+
+    $nama = $_POST['nama'];
+    $id_pegawai = $_POST['id_peagawi'];
+    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $tanggal_lahir = $_POST['tanggal_lahir'];
+    $alamat = $_POST['alamat'];
+    $id_jabatan = $_POST['id_jabatan'];
+
+    if(empty($id_pegawai))
+    {
+        $sql = 'INSERT INTO pegawai VALUE (null, "'.$nama.'", "'.$jenis_kelamin.'", "'.$tanggal_lahir.'", 
+            "'.$alamat.'", "'.$id_jabatan.'")';
+        
+    }
+    else{
+        $sql = 'UPDATE pegawai SET nama ='.$nama.'", " jenis_kelamin = '.$jenis_kelamin.'",tanggal_lahir = "'.$tanggal_lahir.'", 
+            alamat="'.$alamat.'",id_jabatan="'.$id_jabatan.'")';
+    }
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        header('Location: index.php');
+    } else {
+        echo 'Inserted Failed.';
+    }
+?>
